@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Recebido - Sistema Financeiro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .success-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4a6ee0, #25D366);
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a6ee0, #3a5ed0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #4a6ee0;
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .message-box {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #4a6ee0;
+        }
+        
+        .message-box p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .message-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            padding: 20px 15px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border: 1px solid #eef1ff;
+        }
+        
+        .step-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            min-width: 200px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4a6ee0, #3a5ed0);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(74, 110, 224, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #1da851);
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #4a6ee0;
+            border: 2px solid #4a6ee0;
+        }
+        
+        .btn-outline:hover {
+            background: #f8f9ff;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .contact-info a {
+            color: #4a6ee0;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 30px 20px;
+            }
+            
+            .info-steps {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+        </div>
+        
+        <h1>✅ Checklist Enviado com Sucesso!</h1>
+        <p class="subtitle">Recebemos suas informações de sistema financeiro</p>
+        
+        <div class="message-box">
+            <p><strong>Muito obrigado pelo seu interesse!</strong></p>
+            <p>Seu checklist foi recebido e está sendo analisado.</p>
+            <p>📧 Você recebeu uma cópia completa das respostas no seu e-mail.</p>
+        </div>
+        
+        <div class="info-steps">
+            <div class="step">
+                <div class="step-icon">📧</div>
+                <div class="step-title">Confirmação por E-mail</div>
+                <div class="step-desc">Verifique sua caixa de entrada (e spam)</div>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">⏰</div>
+                <div class="step-title">Análise Técnica</div>
+                <div class="step-desc">Nossa equipe analisa suas necessidades</div>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">📞</div>
+                <div class="step-title">Contato Personalizado</div>
+                <div class="step-desc">Entraremos em contato em até 24h úteis</div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="https://wa.me/5548996901919?text=Olá! Acabei de enviar o checklist do sistema financeiro e gostaria de mais informações." 
+               class="btn btn-whatsapp" target="_blank">
+                💬 Falar no WhatsApp
+            </a>
+            
+            <a href="https://celsolenonsander.github.io/formulario-sistema-financeiro/" class="btn btn-outline">
+                🔄 Novo Checklist
+            </a>
+        </div>
+        
+        <div class="contact-info">
+            <p><strong>Precisa de ajuda imediata?</strong></p>
+            <p>E-mail: <a href="mailto:celsolsander@gmail.com">celsolsander@gmail.com</a></p>
+            <p>WhatsApp: <a href="https://wa.me/5548996901919">(48) 9.9690-1919</a></p>
+            <p style="margin-top: 15px; font-size: 12px; color: #999;">
+                Você será redirecionado automaticamente para a página inicial em <span id="countdown">30</span> segundos
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Contador para redirecionamento automático
+        let seconds = 30;
+        const countdownElement = document.getElementById('countdown');
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "https://celsolenonsander.github.io/formulario-sistema-financeiro/";
+            }
+        }, 1000);
+        
+        // Pausar contador se o usuário interagir
+        document.addEventListener('click', () => {
+            clearInterval(countdownInterval);
+            countdownElement.parentElement.style.display = 'none';
+        });
+        
+        document.addEventListener('keypress', () => {
+            clearInterval(countdownInterval);
+            countdownElement.parentElement.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

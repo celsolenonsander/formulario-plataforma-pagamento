@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHECKLIST - Plataforma de Pagamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #4a6ee0;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #4a6ee0;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        textarea:focus {
+            border-color: #4a6ee0;
+            outline: none;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            transition: all 0.2s;
+        }
+        
+        .checkbox-item:hover {
+            background-color: #f0f5ff;
+            border-color: #c8d4ff;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: #4a6ee0;
+        }
+        
+        .checkbox-item label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        
+        .other-input {
+            margin-top: 10px;
+            margin-left: 25px;
+            display: none;
+        }
+        
+        .other-input.show {
+            display: block;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-submit {
+            background-color: #4a6ee0;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background-color: #3a5ed0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 110, 224, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        .info-note {
+            background-color: #e8f4ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 30px;
+            border-left: 4px solid #4a6ee0;
+            font-size: 14px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✅ CHECKLIST – SISTEMA FINANCEIRO COM INTEGRAÇÃO BANCÁRIA</h1>
+            <p class="subtitle">Preencha este formulário para solicitar orçamento do sistema financeiro personalizado</p>
+        </header>
+
+        <form id="checklistForm" action="https://formsubmit.co/celsolsander@gmail.com" method="POST">
+            <!-- Configurações do FormSubmit -->
+            <input type="hidden" name="_subject" value="📋 CHECKLIST SISTEMA FINANCEIRO">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://celsolenonsander.github.io/formulario-sistema-financeiro/obrigado.html">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Obrigado pelo seu checklist! Recebemos suas informações e em breve entraremos em contato para discutir seu sistema financeiro personalizado.">
+
+            <!-- Seção 1: Dados do Cliente -->
+            <div class="section">
+                <h2 class="section-title">👤 DADOS DO CLIENTE</h2>
+                
+                <div class="form-group">
+                    <label for="cliente">Cliente: <span class="required">*</span></label>
+                    <input type="text" id="cliente" name="cliente" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="empresa">Empresa:</label>
+                    <input type="text" id="empresa" name="empresa">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail: <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="data">Data: <span class="required">*</span></label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+            </div>
+
+            <!-- Seção 1: Cadastros Básicos -->
+            <div class="section">
+                <h2 class="section-title">🏢 1. CADASTROS BÁSICOS</h2>
+                <p>O sistema precisa ter:</p>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cad_cliente" name="cadastro_clientes" value="Sim">
+                        <label for="cad_cliente">Cadastro de clientes</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cad_fornecedor" name="cadastro_fornecedores" value="Sim">
+                        <label for="cad_fornecedor">Cadastro de fornecedores</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cad_contas" name="cadastro_contas_bancarias" value="Sim">
+                        <label for="cad_contas">Cadastro de contas bancárias da empresa</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cad_categorias" name="cadastro_categorias" value="Sim">
+                        <label for="cad_categorias">Cadastro de categorias financeiras</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cad_centro_custo" name="cadastro_centro_custo" value="Sim">
+                        <label for="cad_centro_custo">Cadastro de centros de custo</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="controle_multiempresa" name="controle_multiempresa" value="Sim">
+                        <label for="controle_multiempresa">Controle multiempresa</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 2: Contas a Receber -->
+            <div class="section">
+                <h2 class="section-title">💰 2. CONTAS A RECEBER (Cobranças)</h2>
+                
+                <p>O sistema deve permitir:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rec_lancar" name="rec_lancar_manuais" value="Sim">
+                        <label for="rec_lancar">Lançar cobranças manuais</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rec_parcelar" name="rec_parceladas" value="Sim">
+                        <label for="rec_parcelar">Gerar cobranças parceladas</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rec_vencimento" name="rec_controle_vencimento" value="Sim">
+                        <label for="rec_vencimento">Controle de vencimentos</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rec_status" name="rec_controle_status" value="Sim">
+                        <label for="rec_status">Controle de títulos em aberto/pagos/vencidos</label>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">Formas de cobrança:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forma_boleto" name="forma_boleto" value="Sim">
+                        <label for="forma_boleto">Boleto bancário</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forma_pix" name="forma_pix" value="Sim">
+                        <label for="forma_pix">PIX (QR Code dinâmico)</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forma_link" name="forma_link_pagamento" value="Sim">
+                        <label for="forma_link">Link de pagamento com cartão</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forma_controle" name="forma_apenas_controle" value="Sim">
+                        <label for="forma_controle">Apenas controle interno (sem integração bancária)</label>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">Regras financeiras:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="regra_multa" name="regra_multa" value="Sim">
+                        <label for="regra_multa">Aplicar multa por atraso</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="regra_juros" name="regra_juros" value="Sim">
+                        <label for="regra_juros">Aplicar juros por dia de atraso</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="regra_desconto" name="regra_desconto" value="Sim">
+                        <label for="regra_desconto">Conceder desconto por pagamento antecipado</label>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">Acompanhamento automático:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_baixa" name="auto_baixa" value="Sim">
+                        <label for="auto_baixa">Baixa automática quando o banco informar pagamento</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_notificacao" name="auto_notificacao" value="Sim">
+                        <label for="auto_notificacao">Notificação quando cliente pagar</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_reenvio" name="auto_reenvio" value="Sim">
+                        <label for="auto_reenvio">Reenvio de 2ª via de boleto/PIX</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 3: Contas a Pagar -->
+            <div class="section">
+                <h2 class="section-title">💸 3. CONTAS A PAGAR</h2>
+                
+                <p>O sistema deve permitir:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_lancar" name="pag_lancar_manuais" value="Sim">
+                        <label for="pag_lancar">Lançar despesas manuais</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_fixas" name="pag_despesas_fixas" value="Sim">
+                        <label for="pag_fixas">Despesas fixas mensais</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_parcelar" name="pag_despesas_parceladas" value="Sim">
+                        <label for="pag_parcelar">Despesas parceladas</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_vencimento" name="pag_controle_vencimento" value="Sim">
+                        <label for="pag_vencimento">Controle de vencimentos</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_status" name="pag_controle_status" value="Sim">
+                        <label for="pag_status">Controle de contas a pagar/pagas/vencidas</label>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">Formas de pagamento:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_controle" name="pag_apenas_controle" value="Sim">
+                        <label for="pag_controle">Pagamentos registrados apenas para controle interno</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_cnab" name="pag_gerar_cnab" value="Sim">
+                        <label for="pag_cnab">Gerar arquivo bancário para pagamento automático (CNAB)</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_pix" name="pag_controle_pix" value="Sim">
+                        <label for="pag_pix">Controle de pagamentos via PIX</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pag_ted" name="pag_controle_ted" value="Sim">
+                        <label for="pag_ted">Controle de pagamentos via TED/DOC</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 4: Integração Bancária -->
+            <div class="section">
+                <h2 class="section-title">🏦 4. INTEGRAÇÃO BANCÁRIA</h2>
+                
+                <p>Cobrança (Receber):</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_registrar" name="int_registrar_boletos" value="Sim">
+                        <label for="int_registrar">Registrar boletos automaticamente no banco</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_cancelar" name="int_cancelar_boletos" value="Sim">
+                        <label for="int_cancelar">Cancelar boletos no banco</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_alterar" name="int_alterar_boletos" value="Sim">
+                        <label for="int_alterar">Alterar boletos já registrados</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_remessa" name="int_gerar_remessa" value="Sim">
+                        <label for="int_remessa">Gerar arquivo CNAB de remessa de cobrança</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_retorno" name="int_ler_retorno" value="Sim">
+                        <label for="int_retorno">Ler arquivo CNAB de retorno de cobrança</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_webhook" name="int_webhook_pix" value="Sim">
+                        <label for="int_webhook">Receber notificação automática de pagamento via PIX (webhook)</label>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">Pagamentos (Pagar):</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_pagar_cnab" name="int_pagar_cnab" value="Sim">
+                        <label for="int_pagar_cnab">Gerar arquivo CNAB para pagamento de fornecedores</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_pagar_retorno" name="int_pagar_retorno" value="Sim">
+                        <label for="int_pagar_retorno">Ler retorno do banco confirmando pagamentos realizados</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="int_pagar_falhas" name="int_pagar_falhas" value="Sim">
+                        <label for="int_pagar_falhas">Registrar falhas de pagamento retornadas pelo banco</label>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">Bancos que precisam ser integrados:</p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_bb" name="banco_bb" value="Sim">
+                        <label for="banco_bb">Banco do Brasil</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_bradesco" name="banco_bradesco" value="Sim">
+                        <label for="banco_bradesco">Bradesco</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_itau" name="banco_itau" value="Sim">
+                        <label for="banco_itau">Itaú</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_caixa" name="banco_caixa" value="Sim">
+                        <label for="banco_caixa">Caixa</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_santander" name="banco_santander" value="Sim">
+                        <label for="banco_santander">Santander</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_inter" name="banco_inter" value="Sim">
+                        <label for="banco_inter">Inter</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="banco_outro" name="banco_outro_check" value="Sim">
+                        <label for="banco_outro">Outro(s):</label>
+                    </div>
+                </div>
+                
+                <div id="outro-banco" class="other-input">
+                    <input type="text" id="banco_outro_texto" name="banco_outro_texto" placeholder="Quais outros bancos?">
+                </div>
+            </div>
+
+            <!-- Seção 5: Conciliação Bancária -->
+            <div class="section">
+                <h2 class="section-title">🔄 5. CONCILIAÇÃO BANCÁRIA</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="conc_importar" name="conc_importar_extrato" value="Sim">
+                        <label for="conc_importar">Importar extrato bancário (OFX ou similar)</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="conc_comparar" name="conc_comparar_extrato" value="Sim">
+                        <label for="conc_comparar">Comparar extrato do banco com lançamentos do sistema</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="conc_baixa" name="conc_baixa_automatica" value="Sim">
+                        <label for="conc_baixa">Baixa automática por conciliação</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="conc_manual" name="conc_conferencia_manual" value="Sim">
+                        <label for="conc_manual">Tela para conferência manual de divergências</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 6: Relatórios -->
+            <div class="section">
+                <h2 class="section-title">📊 6. RELATÓRIOS E VISÃO GERENCIAL</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_fluxo_futuro" name="rel_fluxo_futuro" value="Sim">
+                        <label for="rel_fluxo_futuro">Fluxo de caixa futuro</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_fluxo_realizado" name="rel_fluxo_realizado" value="Sim">
+                        <label for="rel_fluxo_realizado">Fluxo de caixa realizado</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_receber_periodo" name="rel_receber_periodo" value="Sim">
+                        <label for="rel_receber_periodo">Contas a receber por período</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_pagar_periodo" name="rel_pagar_periodo" value="Sim">
+                        <label for="rel_pagar_periodo">Contas a pagar por período</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_inadimplencia" name="rel_inadimplencia" value="Sim">
+                        <label for="rel_inadimplencia">Inadimplência de clientes</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_categoria" name="rel_categoria" value="Sim">
+                        <label for="rel_categoria">Relatório por categoria financeira</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="rel_centro_custo" name="rel_centro_custo" value="Sim">
+                        <label for="rel_centro_custo">Relatório por centro de custo</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 7: Acesso e Usuários -->
+            <div class="section">
+                <h2 class="section-title">👥 7. ACESSO E USUÁRIOS</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="acesso_usuarios" name="acesso_controle_usuarios" value="Sim">
+                        <label for="acesso_usuarios">Controle de usuários</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="acesso_niveis" name="acesso_niveis" value="Sim">
+                        <label for="acesso_niveis">Diferentes níveis de acesso</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="acesso_log" name="acesso_historico_log" value="Sim">
+                        <label for="acesso_log">Registro de histórico de ações (log)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 8: Acesso ao Sistema -->
+            <div class="section">
+                <h2 class="section-title">🌐 8. ACESSO AO SISTEMA</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="sistema_interno" name="sistema_interno" value="Sim">
+                        <label for="sistema_interno">Sistema apenas interno</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="sistema_web" name="sistema_web" value="Sim">
+                        <label for="sistema_web">Sistema web acessível de qualquer lugar</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="sistema_multiusuario" name="sistema_multiusuario" value="Sim">
+                        <label for="sistema_multiusuario">Multiusuário simultâneo</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="sistema_mobile" name="sistema_mobile" value="Sim">
+                        <label for="sistema_mobile">Necessita aplicativo mobile futuramente</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 9: Automações -->
+            <div class="section">
+                <h2 class="section-title">⚙️ 9. AUTOMAÇÕES DESEJADAS</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_lembrete" name="auto_lembrete" value="Sim">
+                        <label for="auto_lembrete">Envio automático de lembrete de cobrança</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_recibo" name="auto_recibo" value="Sim">
+                        <label for="auto_recibo">Envio de recibo após pagamento</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_alertas_vencimento" name="auto_alertas_vencimento" value="Sim">
+                        <label for="auto_alertas_vencimento">Alertas de contas próximas do vencimento</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="auto_alertas_inadimplencia" name="auto_alertas_inadimplencia" value="Sim">
+                        <label for="auto_alertas_inadimplencia">Alertas de inadimplência</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 10: Outras Necessidades -->
+            <div class="section">
+                <h2 class="section-title">🧩 10. OUTRAS NECESSIDADES</h2>
+                
+                <div class="form-group">
+                    <label for="outras_necessidades">Descreva qualquer outra função importante que o sistema precisa ter:</label>
+                    <textarea id="outras_necessidades" name="outras_necessidades" rows="4"></textarea>
+                </div>
+            </div>
+
+            <!-- Informação importante -->
+            <div class="info-note">
+                <strong>📌 Informação importante:</strong> Após clicar em "Enviar Checklist", você receberá uma cópia das respostas no seu e-mail. Entraremos em contato em até 24 horas úteis para discutir seu projeto.
+            </div>
+
+            <!-- Botões -->
+            <div class="buttons">
+                <button type="submit" class="btn btn-submit">
+                    📤 Enviar Checklist por E-mail
+                </button>
+                
+                <button type="button" class="btn btn-whatsapp" id="btnWhatsApp">
+                    💬 Enviar Checklist por WhatsApp
+                </button>
+            </div>
+        </form>
+
+        <footer>
+            <p>© 2024 Sistema Financeiro Personalizado. Todos os direitos reservados.</p>
+            <p>Este formulário é processado por FormSubmit.co</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mostrar campo "outro banco" quando selecionado
+        document.getElementById('banco_outro').addEventListener('change', function() {
+            const outroBancoDiv = document.getElementById('outro-banco');
+            if (this.checked) {
+                outroBancoDiv.classList.add('show');
+            } else {
+                outroBancoDiv.classList.remove('show');
+                document.getElementById('banco_outro_texto').value = '';
+            }
+        });
+
+        // Gerar resumo para WhatsApp
+        document.getElementById('btnWhatsApp').addEventListener('click', function() {
+            // Coletar dados básicos
+            const cliente = document.getElementById('cliente').value || 'Não informado';
+            const empresa = document.getElementById('empresa').value || 'Não informada';
+            const email = document.getElementById('email').value || 'Não informado';
+            const data = document.getElementById('data').value || 'Não informada';
+            
+            // Contar checkboxes marcados por seção
+            const cadastros = document.querySelectorAll('.section:nth-child(2) input[type="checkbox"]:checked').length;
+            const receber = document.querySelectorAll('.section:nth-child(3) input[type="checkbox"]:checked').length;
+            const pagar = document.querySelectorAll('.section:nth-child(4) input[type="checkbox"]:checked').length;
+            const integracao = document.querySelectorAll('.section:nth-child(5) input[type="checkbox"]:checked').length;
+            const conciliacao = document.querySelectorAll('.section:nth-child(6) input[type="checkbox"]:checked').length;
+            const relatorios = document.querySelectorAll('.section:nth-child(7) input[type="checkbox"]:checked').length;
+            const acesso = document.querySelectorAll('.section:nth-child(8) input[type="checkbox"]:checked').length;
+            const sistema = document.querySelectorAll('.section:nth-child(9) input[type="checkbox"]:checked').length;
+            const automacoes = document.querySelectorAll('.section:nth-child(10) input[type="checkbox"]:checked').length;
+            
+            // Coletar outros bancos
+            const outrosBancos = document.getElementById('banco_outro_texto').value;
+            const outrasNecessidades = document.getElementById('outras_necessidades').value;
+            
+            // Criar mensagem
+            let mensagem = `*📋 CHECKLIST SISTEMA FINANCEIRO*%0A%0A`;
+            mensagem += `*Cliente:* ${cliente}%0A`;
+            mensagem += `*Empresa:* ${empresa}%0A`;
+            mensagem += `*E-mail:* ${email}%0A`;
+            mensagem += `*Data:* ${data}%0A%0A`;
+            
+            mensagem += `*📊 Resumo por Seção:*%0A`;
+            mensagem += `🏢 Cadastros Básicos: ${cadastros}/6%0A`;
+            mensagem += `💰 Contas a Receber: ${receber}/16%0A`;
+            mensagem += `💸 Contas a Pagar: ${pagar}/9%0A`;
+            mensagem += `🏦 Integração Bancária: ${integracao}/12%0A`;
+            mensagem += `🔄 Conciliação: ${conciliacao}/4%0A`;
+            mensagem += `📊 Relatórios: ${relatorios}/7%0A`;
+            mensagem += `👥 Acesso: ${acesso}/3%0A`;
+            mensagem += `🌐 Sistema: ${sistema}/4%0A`;
+            mensagem += `⚙️ Automações: ${automacoes}/4%0A`;
+            
+            if (outrosBancos) {
+                mensagem += `%0A*🏦 Outros Bancos:* ${outrosBancos}%0A`;
+            }
+            
+            if (outrasNecessidades) {
+                mensagem += `%0A*🧩 Outras Necessidades:*%0A${outrasNecessidades}%0A`;
+            }
+            
+            mensagem += `%0A_Checklist preenchido via formulário online_`;
+            
+            // Abrir WhatsApp
+            const phoneNumber = "5548996901919"; 
+            const url = `https://wa.me/${phoneNumber}?text=${mensagem}`;
+            window.open(url, '_blank');
+        });
+
+        // Formatar data para hoje como padrão
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('data').value = today;
+        });
+    </script>
+</body>
+</html>
